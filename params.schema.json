@@ -1,0 +1,160 @@
+{
+    "$schema": "http://json-schema.org/draft-07/schema#",
+    "type": "object",
+    "properties": {
+        "graphs": {
+            "type": "object",
+            "properties": {
+                "problem": {
+                    "type": "string",
+                    "enum": [
+                        "maxcut",
+                        "partition"
+                    ],
+                    "default": "maxcut"
+                },
+                "type": {
+                    "type": "string",
+                    "enum": [
+                        "erdos_renyi",
+                        "uniform"
+                    ],
+                    "default": "erdos_renyi",
+                    "description": "Describes how the instances are created. Erdos_renyi is only supported for maxcut, uniform only for partition. If not specified otherwise, erdos_renyi is used for maxcut and uniform for partition."
+                },
+                "size": {
+                    "type": "integer",
+                    "description": "Problem size, i.e. number of qubits"
+                },
+                "n": {
+                    "type": "integer",
+                    "default": 100,
+                    "description": "Number of problem instances"
+                }
+            },
+            "description": "This specified the problem instances (it is called graphs for legacy reasons)",
+            "required": [
+                "size"
+            ]
+        },
+        "source": {
+            "type": "object",
+            "properties": {
+                "type": {
+                    "type": "string",
+                    "enum": [
+                        "qpu",
+                        "random",
+                        "approximation"
+                    ],
+                    "default": "qpu",
+                    "description": "qpu: run a quantum algorithm, approximation: run Goemans-Williamson for Max-Cut and List Scheduling for Partition, random: choose solution uniformly at random"
+                },
+                "algorithm": {
+                    "type": "object",
+                    "properties": {
+                        "type": {
+                            "type": "string",
+                            "enum": [
+                                "qaoa",
+                                "wsqaoa",
+                                "wsinitqaoa",
+                                "rqaoa"
+                            ]
+                        },
+                        "nLayers": {
+                            "type": "integer",
+                            "default": 1,
+                            "description": "Number of QAOA layers"
+                        },
+                        "nShots": {
+                            "type": "integer",
+                            "default": 1,
+                            "description": "How often each algorithm is run (results are averaged)"
+                        },
+                        "nSamples": {
+                            "type": "integer",
+                            "description": "Number of samples used for the edge RQAOA edge correlations (only supported for RQAOA)"
+                        }
+                    },
+                    "description": "required if source.type is qpu"
+                },
+                "model": {
+                    "type": "object",
+                    "properties": {
+                        "type": {
+                            "type": "string",
+                            "enum": [
+                                "ideal",
+                                "noisy_fidelity",
+                                "noisy_composite"
+                            ],
+                            "description": "ideal: no noise, noisy_fidelity: depolarizing channel for gate errors, noisy_composite: both thermal relaxation and depolarizing for gate errors"
+                        },
+                        "noise": {
+                            "type": "number",
+                            "description": "Scales the depolarizing probabilities (is 1.0 by default if source.model.type is either noisy_fidelity or noisy_coposite)"
+                        },
+                        "time": {
+                            "type": "number",
+                            "description": "Scales the gate times for thermal realxation channels (is 1.0 by default if source.model.type is either noisy_fidelity or noisy_coposite)"
+                        },
+                        "params": {
+                            "type": "string",
+                            "enum": [
+                                "qiskit_average",
+                                "qiskit_median",
+                                "qiskit_best"
+                            ],
+                            "description": "Noise parameter set (T_1, T_2, gate times, gate fidelity, readout); qiskit_average: Use Fake Backends average values, qiskit_median: use median values, qiskit_best: use best values (in all three cases rounded values are used, cf. run_benchmark.py)"
+                        },
+                        "nSamples": {
+                            "type": "integer",
+                            "description": "Number of samples during QAOA"
+                        },
+                        "sx": {
+                            "type": "boolean",
+                            "default": true,
+                            "description": "Transpile single-qubit gates into SX and RZ gates (native IBM-Q gates)"
+                        },
+                        "readout": {
+                            "type": "number",
+                            "default": 0.0,
+                            "description": "Scales readout error probabilities"
+                        }
+                    },
+                    "description": "required if source.type is qpu"
+                }
+            }
+        },
+        "metric": {
+            "type": "string",
+            "enum": [
+                "approx_ratio",
+                "success_prob",
+                "fidelity"
+            ],
+            "default": "approx_ratio",
+            "description": "Which data is collected; approx_ratio: Algorithm output divided by optimal solution, success_prob: probability of finding the optimal result, fidelity: circuit fidelity (only supported for noisy models)"
+        },
+        "value": {
+            "type": "number",
+            "description": "Average value (cf. metric) for all problem instances"
+        },
+        "raw": {
+            "type": "array",
+            "items": {
+                "type": "number"
+            },
+            "description": "List of values (cf. metric) for all problem instances"
+        },
+        "time": {
+            "type": "integer",
+            "description": "Unix time stamp"
+        },
+        "meta": {
+            "type": "object",
+            "description": "Arbitrary additional data for later filtering"
+        }
+    }
+}

@@ -1,0 +1,4 @@
+networkx==3.1
+json5==0.9.11
+numpy==1.23.5
+cvxgraphalgs==0.1.2

@@ -1,0 +1,3 @@
+[submodule "qiskit-terra"]
+	path = qiskit-terra
+	url = https://github.com/Qiskit/qiskit-terra.git

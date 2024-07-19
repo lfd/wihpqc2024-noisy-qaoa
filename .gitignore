@@ -1,0 +1,5 @@
+__pycache__/**
+temp/**
+benchmark_test.bash
+tests/__pycache__/**
+.venv/**
