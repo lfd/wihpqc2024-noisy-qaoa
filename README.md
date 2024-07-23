@@ -49,14 +49,15 @@ This creates two directories `img-pdf` and `img-tikz` and builds and runs a Dock
 
 # Project structure
 ## Python scripts
-- `compute_circuit_depth.py`: Compute the depth of the time-evolved problem Hamiltonian for all problem instances and store the results in `circuit_depths.json`
 - `run_benchmarks.py`: Main script to run the noisy QAOA benchmarks
 - `search_backends.py`: Search noise parameters of the Qiskit fake backends
 ## Other Python files
+- `create_optimized_qaoa_circuit.py`: Reduce problem Hamiltonian circuit depth using Misra-Gries edge coloring
 - `filter_results.py`: Filter benchmark results using a simple query language
 - `generate_param_sets.py`: generates multiple parameter sets from a JSON document using Cartesian product
 - `parse_params.py`: Specification of benchmark parameters
 - `rqaoa.py`: Implementation of Recursive QAOA for QLM
+- `terms.py`: QUBO/Ising conversion logic and variable substitution for Recursive QAOA
 - `transpile_to_sx_rz.py`: Circuit transpilation for QAOA circuits into the IMB-Q native gate set
 ## Other
 - `results/`: Stores benchmark results and Bash scripts to run the respective benchmarks
