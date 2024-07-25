@@ -1057,7 +1057,9 @@ if __name__ == "__main__":
         json.loads(Params(**p).dump_json())
         for p in spread_json(json.loads(args.params))
     ]
-    param_sets = check_for_duplicates(param_sets, args.out + ".out")
+
+    if args.out is not None:
+        param_sets = check_for_duplicates(param_sets, args.out + ".out")
 
     param_sets = [Params(**p) for p in param_sets]
     print(f"Run {len(param_sets)} evaluations")
@@ -1070,5 +1072,6 @@ if __name__ == "__main__":
         args.out,
         args.qlmaas,
         args.raw,
+        args.circuit_metrics,
         args.done_marker,
     )
