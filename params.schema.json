@@ -9,7 +9,8 @@
                     "type": "string",
                     "enum": [
                         "maxcut",
-                        "partition"
+                        "partition",
+                        "vertex_cover"
                     ],
                     "default": "maxcut"
                 },
@@ -48,7 +49,7 @@
                         "approximation"
                     ],
                     "default": "qpu",
-                    "description": "qpu: run a quantum algorithm, approximation: run Goemans-Williamson for Max-Cut and List Scheduling for Partition, random: choose solution uniformly at random"
+                    "description": "qpu: run a quantum algorithm; approximation: run Goemans-Williamson for Max-Cut, List Scheduling for Partition and the greedy 2-approximation algorithm for Vertex Cover; random: choose solution uniformly at random"
                 },
                 "algorithm": {
                     "type": "object",
@@ -151,6 +152,34 @@
         "time": {
             "type": "integer",
             "description": "Unix time stamp"
+        },
+        "circuitMetrics": {
+            "type": "array",
+            "description": "Circuit metrics for each problem instance, for each QAOA circuit",
+            "items": {
+                "type": "array",
+                "items": {
+                    "type": "object",
+                    "properties": {
+                        "nQubits": {
+                            "type": "integer",
+                            "description": "Number of Qubits of the executed circuit"
+                        },
+                        "depth": {
+                            "type": "number",
+                            "description": "Circuit depth/execution time in nano seconds"
+                        },
+                        "nOptimizerIterations": {
+                            "type": "integer",
+                            "description": "Number of iterations of the classical optimizer"
+                        },
+                        "optimizerTime": {
+                            "type": "number",
+                            "description": "Total time used by the classical optimization algorithm for this circuit in seconds"
+                        }
+                    }
+                }
+            }
         },
         "meta": {
             "type": "object",
