@@ -3,13 +3,11 @@
 - QLM 1.9.1
 - Docker 24.0.5
 - Make
+- Git
 
 # Install
 1. Clone this repository
-2. Pull Subrepositories (for `search_backends.py`)
-```bash
-git submodule update --init --recursive
-```
+2. Download the Qiskit repository (for `search_backends.py`) by running `git submodule update --init --recursive` or `source clone_qiskit_repository.sh` in case you only have the standalone version of this reproduction package (without Git).
 3. Create virtual environment
 ```bash
 python3 -m venv .venv
