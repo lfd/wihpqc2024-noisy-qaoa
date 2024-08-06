@@ -21,7 +21,6 @@ from qat.core.qpu import CommonQPU
 from qat.qpus import LinAlg, NoisyQProc
 from qat.plugins import ScipyMinimizePlugin
 
-# from qlmaas.plugins import ScipyMinimizePlugin as QlmaasScipyMinimizePlugin  # type: ignore
 from qat.hardware import DefaultHardwareModel
 from qat.quops import (
     ParametricAmplitudeDamping,
@@ -474,7 +473,6 @@ def create_composite_model_from_parameters(
 
         init_depol_prob = compute_depolarizing_prob(gate)
         depol_prob = init_depol_prob * gate_error_factor
-        # print("depol", gate, init_depol_prob, depol_prob)
 
         depol_channel = (
             identity
@@ -489,7 +487,6 @@ def create_composite_model_from_parameters(
 
         gate_channel = compose_channels_sequential(idle_channel, depol_channel)
         infidelity = params.gate_errors[gate]
-        # print(gate, 1 - infidelity, get_average_process_fidelity(gate_channel))
 
         # if number of Kraus operators is larger than what is theoretically necessary,
         if gate_channel.kraus_rank() > 2 ** (2 * n_qubits):
@@ -680,7 +677,6 @@ class ProfilerMinimizePlugin(ScipyMinimizePlugin):
         return result
 
     def optimize(self, *args, **xargs):
-        # print("(optimize")
         self.profiler.enable()
         result = super().optimize(*args, **xargs)
         return result

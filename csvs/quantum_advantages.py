@@ -1,5 +1,6 @@
 import csv
 
+
 data = {}
 
 rows = []

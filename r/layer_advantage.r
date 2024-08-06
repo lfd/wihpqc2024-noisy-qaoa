@@ -17,17 +17,6 @@ offset <- 0
 data$layer2 <- data$layer
 data$relative_performance <- data$relative_performance - offset
 
-
-# data$depolarizing_noise <- factor(data$depolarizing_noise)
-# data$thermal_relaxation_noise <- factor(data$thermal_relaxation_noise)
-
-# data <- data %>% mutate(algorithm = fct_relevel(algorithm, 
-#     "QAOA",
-#     "WSQAOA",
-#     "WS-Init-QAOA",
-#     "RQAOA"
-# ))
-# facet_titles <- c('QAOA.Depth'="$p$",'Number.of.Qubits'="$n$")
 facet_labeller <- function(variable, value) {
     return(paste(facet_titles[variable], value, sep=": "))
 }
@@ -51,9 +40,7 @@ label_layer <- function(layer) {
 }
 
 g <- ggplot(data=data,mapping=aes(x=depolarizing_noise, y=thermal_relaxation_noise, fill=relative_performance)) +
-    # geom_line() +
     geom_tile() +
-    # coord_equal() +
     labs(y="Thermal relaxation noise", x="Depolarising noise") +
     scale_x_continuous(breaks=seq(0, 1, 0.5)) +
     scale_y_continuous(breaks=seq(0, 1, 0.5)) +
@@ -65,13 +52,11 @@ g <- ggplot(data=data,mapping=aes(x=depolarizing_noise, y=thermal_relaxation_noi
         midpoint=1 - offset,
         breaks=seq(0.9 - offset, 1.1 - offset, 0.05)
     ) +
-    # scale_fill_gradient2(low="white", mid="red", high="blue", midpoint=1) +
     facet_nested(algorithm ~ problem + layer2, labeller=labeller(
         problem=label_value, algorithm=label_value,
         layer2=label_layer
     )) +
     theme_paper_base() + theme(
-        # legend.position="right",
         legend.title = element_text(size=BASE.SIZE),
         legend.text=element_text(size=6),
         legend.key.height=unit(0.3, "cm"),

@@ -8,7 +8,7 @@ source("r/base.r")
 options(
     tikzLatexPackages = c(
         getOption("tikzLatexPackages"),
-        "\\usepackage{amsmath}" # , "\\usepackage[utf8]{inputenc}"
+        "\\usepackage{amsmath}" 
     )
 )
 
