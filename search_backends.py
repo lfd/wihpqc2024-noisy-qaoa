@@ -5,7 +5,7 @@ import argparse
 from typing import Any
 
 
-backends_root = "qiskit-terra/qiskit/providers/fake_provider/backends"
+backends_root = "qiskit/qiskit/providers/fake_provider/backends"
 
 
 class Backend:
