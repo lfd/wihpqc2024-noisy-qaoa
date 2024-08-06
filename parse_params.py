@@ -87,7 +87,7 @@ class Model:
         params: str = None,
         nSamples: int = None,
         time: float = None,
-        sx: bool = True,
+        sx: bool = False,
         optimizeCircuitDepth: bool = False,
         readout: float = 0.0,
     ):

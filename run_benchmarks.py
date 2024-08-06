@@ -800,7 +800,7 @@ def execute_model(source: Source, problem: Ising, conn, metric: str) -> Samples:
         if not isinstance(problem, Ising):
             problem = problem.to_ising()
         return generate_uniform_solution(len(problem.magnetic_field_h)), None
-    if source.type == "gw_rounding":
+    if source.type == "approximation":
         if isinstance(problem, MaxCut):
             return sample_gw_rounding(perform_maxcut_sdp(problem.graph), n=10000), None
         if isinstance(problem, NumberPartitioning):
