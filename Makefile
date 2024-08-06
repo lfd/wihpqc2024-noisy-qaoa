@@ -37,7 +37,10 @@ csvs/circuit_optimization_benchmark.csv: csvs/circuit_optimization_benchmark.py
 csvs/performance_by_runtime.csv: csvs/performance_by_runtime.py csvs/circuit_optimization_benchmark.csv csvs/classical_approximation_benchmark.csv results/main_evaluation.txt
 	$(PYTHON) $<
 
-csvs: csvs/algorithm_comparison_n_layers.csv  csvs/algorithm_comparison_n_qubits.csv  csvs/circuit_optimization_benchmark.csv  csvs/classical_approximation_benchmark.csv  csvs/layer_advantage.csv  csvs/performance_by_runtime.csv
+csvs/quantum_advantages.csv: csvs/quantum_advantages.py csvs/algorithm_comparison_n_layers.csv csvs/algorithm_comparison_n_qubits.csv
+	$(PYTHON) $<
+
+csvs: csvs/algorithm_comparison_n_layers.csv  csvs/algorithm_comparison_n_qubits.csv  csvs/circuit_optimization_benchmark.csv  csvs/classical_approximation_benchmark.csv  csvs/layer_advantage.csv  csvs/performance_by_runtime.csv csvs/quantum_advantages.csv
 
 plots:
 	docker build -t qsw-noisy-qaoa . && docker run -v $(pwd)/img-pdf:/app/img-pdf -v $(pwd)/img-tikz:/app/img-tikz qsw-noisy-qaoa

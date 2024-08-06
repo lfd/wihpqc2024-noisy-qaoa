@@ -1,0 +1,25 @@
+type,problem,algorithm,advantage
+By layers,Max-Cut,RQAOA,1
+By qubits,Max-Cut,RQAOA,1
+By layers,Max-Cut,WSQAOA,0
+By qubits,Max-Cut,WSQAOA,0
+By layers,Max-Cut,QAOA,0
+By qubits,Max-Cut,QAOA,0
+By layers,Max-Cut,WS-Init-QAOA,0
+By qubits,Max-Cut,WS-Init-QAOA,0
+By layers,Partition,RQAOA,1
+By qubits,Partition,RQAOA,1
+By layers,Partition,WSQAOA,0
+By qubits,Partition,WSQAOA,0
+By layers,Partition,QAOA,0
+By qubits,Partition,QAOA,0
+By layers,Partition,WS-Init-QAOA,0
+By qubits,Partition,WS-Init-QAOA,0
+By layers,Vertex Cover,RQAOA,1
+By qubits,Vertex Cover,RQAOA,1
+By layers,Vertex Cover,WSQAOA,1
+By qubits,Vertex Cover,WSQAOA,1
+By layers,Vertex Cover,QAOA,1
+By qubits,Vertex Cover,QAOA,1
+By layers,Vertex Cover,WS-Init-QAOA,1
+By qubits,Vertex Cover,WS-Init-QAOA,1
