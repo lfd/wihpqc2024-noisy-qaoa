@@ -31,7 +31,7 @@ from qat.quops import (
 from qat.quops.metrics import get_average_process_fidelity
 from qat.core.util import get_syntax
 from qat.lang.AQASM import RY, RZ, AbstractGate
-from qat.opt import Ising, MaxCut, NumberPartitioning
+from qat.opt import Ising, MaxCut, NumberPartitioning, VertexCover
 from qat.noisy import compute_fidelity
 
 
